@@ -1,0 +1,105 @@
+<!--
+ * @author: Spring
+ * @create: 2021-06-28 09:25 AM
+ * @license: MIT
+ * @lastAuthor: Spring
+ * @lastEditTime: 2021-06-28 17:39 PM
+ * @desc: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let str = 'gasdgdasghkadhdfdsakjfads'
+    function string(str) {
+      let arr = str.split('')
+      let nArr = []
+      let num = []
+      let allArr = arrf(arr, 0)
+
+      allArr.forEach(item => {
+        if (repetition(item)) {
+          num.push(repetition(item))
+        }
+      })
+      console.log(allArr);
+      console.log(num);
+      let longnum = Math.max(...num)
+      return longnum
+      //拼接为数组
+      function arrf(arr, n) {
+        if (n == arr.length) {
+          return nArr
+        }
+        for (let i = 1; i < arr.length - n + 1; i++) {
+          nArr.push(arr.slice(n, n + i))
+        }
+        return arrf(arr, ++n)
+      }
+      //查询是否有重复
+      function repetition(arr) {
+        let newarr = new Set(arr);
+        if (arr.length == newarr.size) {
+          return arr.length
+        }
+        return false
+      };
+    }
+
+    console.log(string(str), 222);
+    //**********************************
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    var lengthOfLongestSubstring = function (s) {
+      // 滑动窗口初始化为一个空数组
+      let arr = [];
+      // 要返回的字符串的长度
+      let max = 0;
+      for (let i = 0; i < s.length; i++) {
+        // 使用 indexOf 判断是否在数组中出现过
+        let index = arr.indexOf(s[i])
+        // 如果出现过
+        if (index !== -1) {
+          // 从数组开头到当前字符串全部截取掉
+          arr.splice(0, index + 1);
+        }
+        // 在窗口右边放进新的字符
+        arr.push(s.charAt(i));
+        // 更新下最大值
+        max = Math.max(arr.length, max);
+      }
+      // 返回
+      return max;
+    };
+
+    console.log(lengthOfLongestSubstring(str), 111);
+
+    function newWay(s) {
+      let arr = []
+      let max = 0
+      for (let i = 0; i < s.length; i++) {
+        let index = arr.indexOf(s[i])
+        if (index != -1) {
+          arr.splice(0, index + 1)
+        }
+        arr.push(s.charAt(i))
+        max=Math.max(arr.length, max)
+      }
+      return max
+    }
+
+    console.log(newWay(str),333);
+  </script>
+</body>
+
+</html>
